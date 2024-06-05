@@ -1,5 +1,5 @@
-# String - Advance Function - Pointer - Method - Struct and Interface
-### Ini merupakan sebuah tugas dari interview MejaKita.
+# Interview MejaKita
+### Ini merupakan sebuah tugas dari interview MejaKita dalam membuat CRUD RESTful API.
 ###  Tech stack yang digunakan :
 - Go versi 1.22.3
     - Go digunakan sebagai bahasa pemrograman dalam mengembangkan tugas ini.
