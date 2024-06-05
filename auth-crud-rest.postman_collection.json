@@ -1,0 +1,1124 @@
+{
+	"info": {
+		"_postman_id": "a6217d46-7e61-4982-ac73-8bbc88813385",
+		"name": "auth-crud-rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27529365"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var res = pm.response.json();\r",
+							"pm.environment.set('token', res.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "e@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123123123",
+							"type": "text"
+						},
+						{
+							"key": "retype_password",
+							"value": "123123123",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Aryo Bimo",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Blitar",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "0895360053889",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Endpoint untuk pendaftaran, response berupa token dan message"
+			},
+			"response": [
+				{
+					"name": "success register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "n@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "retype_password",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Aryo Bimo",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Blitar",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0895360053889",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:44:38 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "288"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success to register\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6Im5AZ21haWwuY29tIiwiZXhwIjoxNzE3NjMxMDc4LCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiI1OTg2YTljYy0wZTVkLTQ0ZmUtYjQ2Ny0yYmQ4MDAxMzQwY2EifQ.gFEnQCMQl_XNFBHhKwrOcmhcQIZa9_cm9vAP0ZAW7hc\"\n}"
+				},
+				{
+					"name": "duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "n@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "retype_password",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Aryo Bimo",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Blitar",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0895360053889",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:55:06 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Error 1062 (23000): Duplicate entry 'n@gmail.com' for key 'users.uni_users_email'\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "Endpoint untuk get data users, terdapat beberapa untuk melakukan pencarian yaitu menggunakan keyword dan email di param"
+			},
+			"response": [
+				{
+					"name": "success get users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:49:14 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1343"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"ID\": \"3c8f5e3f-d56a-425b-8d51-e556e9090cdc\",\n            \"email\": \"d@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"t\"\n        },\n        {\n            \"ID\": \"51cf5541-560f-4699-81c3-c76b0c030ee9\",\n            \"email\": \"g@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"updated\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"8b31414d-7310-43df-a92e-3d89e744cd66\",\n            \"email\": \"d@gmail.coe\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"088333\"\n        },\n        {\n            \"ID\": \"98965d84-8e5f-48a5-9056-8150698ce804\",\n            \"email\": \"f@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"updated\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"9f1734a8-d46a-420f-b4b7-8105ecec40b0\",\n            \"email\": \"j@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"b70335a2-c6d8-49b8-93a8-e29115f1fbcc\",\n            \"email\": \"\",\n            \"role\": \"user\",\n            \"name\": \"bowo\",\n            \"phone_number\": \"\",\n            \"address\": \"\"\n        },\n        {\n            \"ID\": \"da211a56-b5ea-492b-9455-469459e0fd1c\",\n            \"email\": \"c@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"ea76c2f0-5d36-4820-a154-4893d7d02a97\",\n            \"email\": \"e@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"fcdd169c-42cb-4cbd-84cc-3a1a12ff2386\",\n            \"email\": \"a@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"\",\n            \"phone_number\": \"\",\n            \"address\": \"\"\n        }\n    ],\n    \"message\": \"success get all users\"\n}"
+				},
+				{
+					"name": "search by email",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?email=d@gm",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "d@gm"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:54:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "318"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"ID\": \"3c8f5e3f-d56a-425b-8d51-e556e9090cdc\",\n            \"email\": \"d@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"t\"\n        },\n        {\n            \"ID\": \"8b31414d-7310-43df-a92e-3d89e744cd66\",\n            \"email\": \"d@gmail.coe\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"088333\"\n        }\n    ],\n    \"message\": \"success get all users\"\n}"
+				},
+				{
+					"name": "search by name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?keyword=bimo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "bimo"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:54:46 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "792"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"ID\": \"3c8f5e3f-d56a-425b-8d51-e556e9090cdc\",\n            \"email\": \"d@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"t\"\n        },\n        {\n            \"ID\": \"8b31414d-7310-43df-a92e-3d89e744cd66\",\n            \"email\": \"d@gmail.coe\",\n            \"role\": \"user\",\n            \"name\": \"bimo\",\n            \"phone_number\": \"088333\",\n            \"address\": \"088333\"\n        },\n        {\n            \"ID\": \"9f1734a8-d46a-420f-b4b7-8105ecec40b0\",\n            \"email\": \"j@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"da211a56-b5ea-492b-9455-469459e0fd1c\",\n            \"email\": \"c@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        },\n        {\n            \"ID\": \"ea76c2f0-5d36-4820-a154-4893d7d02a97\",\n            \"email\": \"e@gmail.com\",\n            \"role\": \"user\",\n            \"name\": \"Aryo Bimo\",\n            \"phone_number\": \"0895360053889\",\n            \"address\": \"0895360053889\"\n        }\n    ],\n    \"message\": \"success get all users\"\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonResponse = pm.response.json();\r",
+							"var token = jsonResponse.token;\r",
+							"\r",
+							"pm.environment.set(\"jwt_token\", token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "e@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123123123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Endpoint untuk login, auth admin (email = admin, password = admin)"
+			},
+			"response": [
+				{
+					"name": "login admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:46:08 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "280"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success login user\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFkbWluIiwiZXhwIjoxNzE3NjMwNjQ5LCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoiN2ZmMjQwMzgtMTVmMy00Y2ZmLWE5NWMtNTZlMGEzN2Y0ZWFkIn0.GZ94WUE79bNx2FKC-1-ZzPJ3I0U0IE7oGYrIgWfb1a4\"\n}"
+				},
+				{
+					"name": "login user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "g@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:48:40 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "287"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success login user\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImdAZ21haWwuY29tIiwiZXhwIjoxNzE3NjMwODEzLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiI1MWNmNTU0MS01NjBmLTQ2OTktODFjMy1jNzZiMGMwMzBlZTkifQ.aizGLTOXOrF5sSw_VyE-MYt9SzwlKBoaKzeZbYChHDc\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "Endpoint untuk mendapatkan data user berdasarkan id"
+			},
+			"response": [
+				{
+					"name": "error not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/8b31414d-7310-43df-a92e-3d89e744cd66",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"8b31414d-7310-43df-a92e-3d89e744cd66"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:49:03 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"record not found\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/8b31414d-7310-43df-a92e-3d89e744cd66",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"8b31414d-7310-43df-a92e-3d89e744cd66"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:55:37 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success get user\",\n    \"user\": {\n        \"ID\": \"8b31414d-7310-43df-a92e-3d89e744cd66\",\n        \"email\": \"d@gmail.coe\",\n        \"role\": \"user\",\n        \"name\": \"bimo\",\n        \"phone_number\": \"088333\",\n        \"address\": \"088333\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "bowo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/users/dbe41b6a-8365-431e-9634-6c3120a6a295",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"dbe41b6a-8365-431e-9634-6c3120a6a295"
+					]
+				},
+				"description": "Endpoint untuk update user, hanya bisa dilakukan oleh pemilik id atau admin"
+			},
+			"response": [
+				{
+					"name": "error update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "updated",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/51cf5541-560f-4699-81c3-c76b0c030ee9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"51cf5541-560f-4699-81c3-c76b0c030ee9"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:43:27 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Must be admin or owner account\"\n}"
+				},
+				{
+					"name": "success update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "updated",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/5986a9cc-0e5d-44fe-b467-2bd8001340ca",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"5986a9cc-0e5d-44fe-b467-2bd8001340ca"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:45:13 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success update user\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/5986a9cc-0e5d-44fe-b467-2bd8001340ca",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5986a9cc-0e5d-44fe-b467-2bd8001340ca"
+					]
+				},
+				"description": "Endpoint untuk delete user, hanya bisa dilakukan oleh admin"
+			},
+			"response": [
+				{
+					"name": "error delete not admin",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/5986a9cc-0e5d-44fe-b467-2bd8001340ca",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5986a9cc-0e5d-44fe-b467-2bd8001340ca"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:45:37 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "success delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/5986a9cc-0e5d-44fe-b467-2bd8001340ca",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"5986a9cc-0e5d-44fe-b467-2bd8001340ca"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:46:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success delete user\"\n}"
+				}
+			]
+		},
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "d@gmail.coe",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "bimo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "t",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "088333",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Endpoint untuk create user, hanya bisa digunakan oleh admin, karena disini role bisa diisi jadi admin."
+			},
+			"response": [
+				{
+					"name": "success create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "aaa@gmail.coe",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "bimo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "t",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "088333",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:46:55 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "37"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success to create user\"\n}"
+				},
+				{
+					"name": "error duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "aaa@gmail.coe",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "bimo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "t",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "088333",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:47:12 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "98"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Error 1062 (23000): Duplicate entry 'aaa@gmail.coe' for key 'users.uni_users_email'\"\n}"
+				},
+				{
+					"name": "error not admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "aaa@gmail.coe",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "bimo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "t",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "088333",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Jun 2024 23:48:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
