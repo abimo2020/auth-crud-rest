@@ -1,5 +1,5 @@
-# Interview MejaKita
-### Ini merupakan sebuah tugas dari interview MejaKita dalam membuat CRUD RESTful API.
+# Auth CRUD Rest
+### Sebuah program RESTful API untuk melakukan CRUD dan Authentication pengguna.
 ###  Tech stack yang digunakan :
 - Go versi 1.22.3
     - Go digunakan sebagai bahasa pemrograman dalam mengembangkan tugas ini.
